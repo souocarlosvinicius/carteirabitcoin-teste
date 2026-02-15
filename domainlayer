@@ -1,0 +1,11 @@
+from mnemonic import Mnemonic
+import secrets
+
+
+class SeedGenerator:
+    def __init__(self, language: str = "english"):
+        self.mnemonic = Mnemonic(language)
+
+    def generate(self, strength: int = 128) -> str:
+        entropy = secrets.token_bytes(strength // 8)
+        return self.mnemonic.to_mnemonic(entropy)
